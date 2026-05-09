@@ -15,9 +15,8 @@ if not st.session_state.logado:
     tela_login()
 
 else:
-
-validador_cpf = CPF()
-print(validador_cpf.validate('123.456.789-00'))
+    validador_cpf = CPF()
+    
 
 # 🎨 Estilo fundo verde
 st.markdown(
