@@ -3,23 +3,18 @@ import csv
 import os
 import pandas as pd
 from validate_docbr import CPF
+from login import tela_login
 
 
-USUARIO = "ADMIN"
-PASSWORD = "1234"
-st.title("Login")
 
-usuario = st.text_input("Login:")
-passoword = st.text_input("Senha: ", type="password")
 
-if usuario == USUARIO and senha == SENHA:
-    st.success("Login realizado!")
+if "logado" not in st.session_state:
+    st.session_state.logado=False
 
-    st.tltle("Sistema de Lava Jato!")
+if not st.session_state.logado:
+    tela_login()
 
-    st.write("Sistema liberado!")
 else:
-    st.warning("Digite usuario e senha!")
 
 validador_cpf = CPF()
 print(validador_cpf.validate('123.456.789-00'))
