@@ -4,6 +4,23 @@ import os
 import pandas as pd
 from validate_docbr import CPF
 
+
+USUARIO = "ADMIN"
+PASSWORD = "1234"
+st.title("Login")
+
+usuario = st.text_input("Login:")
+passoword = st.text_input("Senha: ", type="password")
+
+if usuario == USUARIO and senha == SENHA:
+    st.success("Login realizado!")
+
+    st.tltle("Sistema de Lava Jato!")
+
+    st.write("Sistema liberado!")
+else:
+    st.warning("Digite usuario e senha!")
+
 validador_cpf = CPF()
 print(validador_cpf.validate('123.456.789-00'))
 
@@ -34,7 +51,7 @@ def salvar_cliente(nome, cpf, endereco, dt_nasc, tp_cliente, sexo):
         if not arquivo_existe:
             writer.writerow(["Nome", "CPF", "Endereco", "Nascimento", "Tipo", "Sexo"])
 
-        # ✅ AGORA DENTRO DO WITH E COM LISTA
+        # AGORA DENTRO DO WITH E COM LISTA
         writer.writerow([nome, cpf, endereco, dt_nasc, tp_cliente, sexo])
 
 #  Função para carregar clientes
@@ -43,13 +60,13 @@ def carregar_clientes():
         return pd.read_csv(ARQUIVO)
     return pd.DataFrame()
 
-# 📌 Função para limpar dados
+#  Função para limpar dados
 def limpar_clientes():
     if os.path.exists(ARQUIVO):
         os.remove(ARQUIVO)
 
 # -------------------------
-# 📋 Cadastro
+# Cadastro
 # -------------------------
 st.header("Cadastro de Clientes")
 
@@ -69,11 +86,11 @@ if st.button("Cadastrar"):
         else:
             st.error("CPF Invalido!")
             
-else:
-    st.error("⚠️ Preencha os dados obrigatórios!")
+    else:
+        st.error("⚠️ Preencha os dados obrigatórios!")
 
 # -------------------------
-# 🔎 Busca
+# Busca
 # -------------------------
 st.header("Buscar Cliente")
 
@@ -90,7 +107,7 @@ else:
     st.info("Nenhum cliente cadastrado ainda!")
 
 # -------------------------
-# 🗑️ Limpar dados
+# Limpar dados
 # -------------------------
 if st.button("Limpar dados dos clientes"):
     limpar_clientes()
